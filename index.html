@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sketch-A-Roo</title>
+        <link rel=stylesheet href="style.css" type="text/css">
+    </head>
+    <body>
+        <div class="layout">
+            <div class="column">
+                <div id="canvas"></div>
+            </div>
+            <div class="column">
+                <h1 id="title">Sketch-A-Roo</h1>
+                <div>
+                    <p>Enter a number to clear sketch and change the grid resolution (1-100)</p>
+                    <input id="res" value="16">
+                    <button type="button" onclick="pickResolution()">Submit</button>
+                </div>
+                <p>Choose a color below.</p>
+                <div id="palette"></div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>    
+</html>
