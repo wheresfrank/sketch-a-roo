@@ -1,22 +1,74 @@
+body {
+  margin: 0;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
 :root {
     --grid-cols: 1;
     --grid-rows: 1;
   }
+
+  header {
+    background-color: black;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  #section {
+    margin-top: 10px;
+  }
   
   #canvas {
-    margin-top: 30px;
-    margin-left: 100px;
-    height: 45vw;
-    width: 45vw;
+    height: 40vw;
+    width: 40vw;
+    float: left;
+    margin-left: 10px;
     border: 2px solid black;
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
   }
+
+  #instructions {
+    float: left;
+    width: 50%;
+    padding: 0px 10px 10px 10px;
+    vertical-align: top;
+  }
   
+
+  #menuLeft {
+    float: left;
+    width: 25%;
+    padding: 10px;
+  }
+
+  #menuRight {
+    float: left;
+    width: 25%;
+    padding: 10px;
+  }
+
+  #section:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
   .cell {
     height: flex;
     width: flex;
+    text-align: center;
+  }
+
+  #paletteContainer {
+    width: 136px;
+    height: auto;
+    margin: 0;
+    padding-left: 20px;
     text-align: center;
   }
 
@@ -28,18 +80,31 @@
     grid-template-columns: repeat(var(--grid-cols), 1fr);
   }
 
-    .pad {
-      height: 2em;
-      width: 2em;
-      border: 1px solid black;
-      text-align: center;
-    }
-
-  .layout {
-    display: flex;
+  #activeColor {
+    float: left;
+    width: 136px;
+    height: 2.35em;
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 0px;
+    border: 1px solid black;
+    -webkit-text-stroke: 1px black;
+    color: white;
+    font-size: 2em;
+    font-weight: 900;
   }
 
-  .column {
-    flex: 50%;
-    padding-left: 20px;
+  .pad {
+    height: 2em;
+    width: 2em;
+    border: 1px solid rgb(29, 29, 29);
+    text-align: center;
+  }     
+
+  .pad:hover {
+    border: 1px solid white;
+  }
+
+  input {
+    width: 3em;
   }

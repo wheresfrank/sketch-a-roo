@@ -5,19 +5,30 @@
         <link rel=stylesheet href="style.css" type="text/css">
     </head>
     <body>
-        <div class="layout">
-            <div class="column">
-                <div id="canvas"></div>
-            </div>
-            <div class="column">
-                <h1 id="title">Sketch-A-Roo</h1>
-                <div>
-                    <p>Enter a number to clear sketch and change the grid resolution (1-100)</p>
+
+        <header>
+            <h1 id="title">Sketch-A-Roo</h1>
+        </header>
+
+        <div id="section">
+            <div id="canvas"></div>
+            <div id="instructions">
+                <h2>Time to create a masterpiece!</h2>
+                <p>Select your color and move the mouse over the canvas to draw.</p>
+                <p>Enter a number to clear sketch and change the canvas resolution (1-100): 
                     <input id="res" value="16">
-                    <button type="button" onclick="pickResolution()">Submit</button>
+                    <button type="button" id="resBtn" onclick="pickResolution()">Submit</button></p>
+                    <hr>
+            </div>
+            <div id="menuLeft">
+                <div id="paletteContainer">
+                    <p>Color Selector</p>
+                    <div id="palette"></div>
+                    <div id="activeColor">Active<br>Color</div>
                 </div>
-                <p>Choose a color below and drag mouse over canvas to sketch.</p>
-                <div id="palette"></div>
+ 
+            </div>
+            <div id="menuRight">
             </div>
         </div>
         <script src="script.js"></script>

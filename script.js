@@ -10,6 +10,7 @@ const colorChoices = ['black', 'white', 'red', 'blue', 'yellow', 'green', 'orang
                         'gold', 'lavender', 'indigo', 'lightgreen', 'maroon', 'lime', 'navy', 'orangered', 'paleTurquoise', 'plum', 'peru', 'seagreen', 'slateblue', 'tomato',
                         'teal', 'darkslategray', 'darkorchid', 'darkgoldenrod', 'linen', 'mistyrose', 'mediumseagreen', 'sienna', 'springgreen', 'fuchsia', 'indianred' ];
 
+const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']                        
 
 // Build canvas to sketch on
 
@@ -45,13 +46,20 @@ function pickColor() {
             changeColor(bg);
         };
         palette.appendChild(pad).className = 'pad';
-    };
-
+    };    
 };
 
 pickColor();
 
 // Change canvas resolution
+
+var res = document.getElementById('res');
+res.addEventListener('keyup', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById('resBtn').click();
+    };
+});
 
 function pickResolution() {
        
@@ -62,7 +70,7 @@ function pickResolution() {
     if (int < 1 || int > 100) {
         alert('Hey! Pick a number between 1 -100.');
     } else if (isNaN(int)) {
-        alert('Ok Smarty Pants, ' + res + ' isn\'t a number...\nTry putting in a number.');
+        alert('Ok Smarty Pants, "' + res + '" isn\'t a number...\nTry putting in a number.');
     } else {
         document.getElementById('canvas').innerHTML = "";
         let gridSize = res;
@@ -70,10 +78,12 @@ function pickResolution() {
     };
 };
 
+// Draw with chosen color
 
 function changeColor(bg) {    
 
     var cell = document.getElementById('canvas').querySelectorAll('.cell');
+    document.getElementById('activeColor').style.backgroundColor = bg;
 
     for (i = 0; i < cell.length; i++) {
         cell[i].onmouseenter = function(){
@@ -82,5 +92,5 @@ function changeColor(bg) {
     };
     
     console.log('Using pretty ' + bg + ' paint');
-    
+   
 };
