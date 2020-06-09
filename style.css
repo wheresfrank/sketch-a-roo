@@ -8,6 +8,26 @@ body {
     --grid-rows: 1;
   }
 
+  a:link {
+    color: white;
+    text-decoration: none;
+    }
+    
+    a:visited {
+    color: white;
+    text-decoration: none;
+    }
+    
+    a:hover {
+    color: lime;
+    text-decoration: none;
+    }
+    
+    a:active {
+    color: lime;
+    text-decoration: none;
+    }
+
   header {
     background-color: black;
     padding-top: 10px;
@@ -15,6 +35,15 @@ body {
     color: white;
     text-align: center;
     font-size: 20px;
+  }
+
+  footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    height: 30px;
+    line-height: 30px;
   }
 
   #section {
@@ -83,10 +112,10 @@ body {
   #activeColor {
     float: left;
     width: 136px;
-    height: 2.35em;
-    margin-top: 30px;
+    height: 2.4em;
+    line-height: 1.2em;
     text-align: center;
-    padding-top: 0px;
+    margin-top: 30px;
     border: 1px solid black;
     -webkit-text-stroke: 1px black;
     color: white;
@@ -107,4 +136,25 @@ body {
 
   input {
     width: 3em;
+  }
+
+  #rainbowBtn {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: darkslategrey;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px slategrey;
+  }
+    
+  #rainbowBtn:hover {background-color: black;}
+    
+  #rainbowBtn:active {
+    background-color: black;
+    box-shadow: 0 5px slategrey;
+    transform: translateY(4px);
   }

@@ -1,4 +1,4 @@
-console.log('Welome to the best sketching website on this tab...')
+console.log('Welcome to the best sketching website on this tab\n.......................................')
 
 let gridSize = 16;
 const canvas = document.getElementById('canvas');
@@ -10,7 +10,7 @@ const colorChoices = ['black', 'white', 'red', 'blue', 'yellow', 'green', 'orang
                         'gold', 'lavender', 'indigo', 'lightgreen', 'maroon', 'lime', 'navy', 'orangered', 'paleTurquoise', 'plum', 'peru', 'seagreen', 'slateblue', 'tomato',
                         'teal', 'darkslategray', 'darkorchid', 'darkgoldenrod', 'linen', 'mistyrose', 'mediumseagreen', 'sienna', 'springgreen', 'fuchsia', 'indianred' ];
 
-const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']                        
+let rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']                        
 
 // Build canvas to sketch on
 
@@ -24,10 +24,9 @@ function makeGrid(gridSize) {
         var cell = document.createElement('div');
         cell.id = 'cell' + (x + 1);
         canvas.appendChild(cell).className = 'cell';
-        
     };
-    
-};
+        
+};    
 
 makeGrid(gridSize);
 
@@ -46,10 +45,52 @@ function pickColor() {
             changeColor(bg);
         };
         palette.appendChild(pad).className = 'pad';
-    };    
+    };       
 };
 
 pickColor();
+
+// Draw with chosen color
+
+function changeColor(bg) { 
+
+    var cell = document.getElementById('canvas').querySelectorAll('.cell');
+    document.getElementById('activeColor').style.cssText = "background-color: " + bg + ";";
+
+    for (i = 0; i < cell.length; i++) {
+        cell[i].onmouseenter = function(){
+            this.style.backgroundColor = bg;
+        };
+        
+    };
+    
+    console.log('Using pretty ' + bg + ' paint');
+   
+};
+
+// Draw with all the colors of the rainbow
+
+
+function drawRainbow() {
+
+    var cell = document.getElementById('canvas').querySelectorAll('.cell');
+    document.getElementById('activeColor').style.cssText = 'background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);';
+    var ri = 0;
+    for (i = 0; i < cell.length; i++) {
+        cell[i].onmouseenter = function(){
+            ri++;
+            if (ri > 6) {
+                ri = 0;
+            };
+
+            rc = rainbow[ri];
+            this.style.backgroundColor = rc;                    
+        };
+    };
+
+    console.log('Drawing with the colors of the rainbow');
+
+};
 
 // Change canvas resolution
 
@@ -76,21 +117,4 @@ function pickResolution() {
         let gridSize = res;
         makeGrid(gridSize);
     };
-};
-
-// Draw with chosen color
-
-function changeColor(bg) {    
-
-    var cell = document.getElementById('canvas').querySelectorAll('.cell');
-    document.getElementById('activeColor').style.backgroundColor = bg;
-
-    for (i = 0; i < cell.length; i++) {
-        cell[i].onmouseenter = function(){
-            this.style.backgroundColor = bg;
-        };
-    };
-    
-    console.log('Using pretty ' + bg + ' paint');
-   
 };
