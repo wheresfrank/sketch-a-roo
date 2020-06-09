@@ -6,11 +6,22 @@ const palette = document.getElementById('palette');
 
 // All the pretty colors
 
-const colorChoices = ['black', 'white', 'red', 'blue', 'yellow', 'green', 'orange', 'purple', 'brown', 'aqua', 'chartreuse', 'crimson', 'darkgray', 'deeppink', 'dodgerblue',
-                        'gold', 'lavender', 'indigo', 'lightgreen', 'maroon', 'lime', 'navy', 'orangered', 'paleTurquoise', 'plum', 'peru', 'seagreen', 'slateblue', 'tomato',
-                        'teal', 'darkslategray', 'darkorchid', 'darkgoldenrod', 'linen', 'mistyrose', 'mediumseagreen', 'sienna', 'springgreen', 'fuchsia', 'indianred' ];
+const colorChoices = ['black', 'darkslategray', 'gray', 'silver', 
+                    'gainsboro', 'linen', 'azure', 'white', 
+                    'darkred', 'red', 'lightcoral', 'lightsalmon', 
+                    'orangered', 'tomato', 'orange', 'gold', 
+                    'darkkhaki', 'yellow', 'khaki', 'lemonchiffon', 
+                    'darkgreen', 'green', 'lime', 'palegreen', 
+                    'teal', 'cadetblue', 'aqua', 'paleturquoise',
+                    'navy', 'blue', 'cornflowerblue', 'lightskyblue', 
+                    'indigo', 'purple', 'fuchsia', 'plum', 
+                    'mediumvioletred', 'deeppink', 'hotpink', 'pink',
+                    'maroon', 'brown', 'tan', 'bisque'];
 
-let rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']                        
+const rainbow = ['red', 'orangered', 'orange', '#FFCC00', 
+                'yellow', 'chartreuse', 'green', 'cyan', 
+                'blue', 'indigo', 'blueviolet', 
+                'violet', '#FF00FF']                        
 
 // Build canvas to sketch on
 
@@ -37,7 +48,7 @@ function pickColor() {
     palette.style.setProperty('--grid-rows', 10);
     palette.style.setProperty('--grid-cols', 4);
 
-    for (var n = 0; n < 40; n++) {
+    for (var n = 0; n < colorChoices.length; n++) {
         let pad = document.createElement('div');
         pad.style.backgroundColor = colorChoices[n];
         let bg = colorChoices[n];       
@@ -79,7 +90,7 @@ function drawRainbow() {
     for (i = 0; i < cell.length; i++) {
         cell[i].onmouseenter = function(){
             ri++;
-            if (ri > 6) {
+            if (ri == rainbow.length) {
                 ri = 0;
             };
 

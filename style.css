@@ -138,6 +138,12 @@ body {
     width: 3em;
   }
 
+  #buttonsContainer {
+    width: 150px;
+    text-align: center;
+    padding: 0px;
+  }
+
   #rainbowBtn {
     padding: 15px 25px;
     font-size: 24px;
@@ -154,6 +160,28 @@ body {
   #rainbowBtn:hover {background-color: black;}
     
   #rainbowBtn:active {
+    background-color: black;
+    box-shadow: 0 5px slategrey;
+    transform: translateY(4px);
+  }
+
+  #shadeBtn {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: darkslategrey;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px slategrey;
+    margin-top: 12px;
+  }
+    
+  #shadeBtn:hover {background-color: black;}
+    
+  #shadeBtn:active {
     background-color: black;
     box-shadow: 0 5px slategrey;
     transform: translateY(4px);
