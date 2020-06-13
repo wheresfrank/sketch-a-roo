@@ -6,22 +6,46 @@ const palette = document.getElementById('palette');
 
 // All the pretty colors
 
-const colorChoices = ['black', 'darkslategray', 'gray', 'silver', 
-                    'gainsboro', 'linen', 'azure', 'white', 
-                    'darkred', 'red', 'lightcoral', 'lightsalmon', 
-                    'orangered', 'tomato', 'orange', 'gold', 
-                    'darkkhaki', 'yellow', 'khaki', 'lemonchiffon', 
-                    'darkgreen', 'green', 'lime', 'palegreen', 
-                    'teal', 'cadetblue', 'aqua', 'paleturquoise',
-                    'navy', 'blue', 'cornflowerblue', 'lightskyblue', 
-                    'indigo', 'purple', 'fuchsia', 'plum', 
-                    'mediumvioletred', 'deeppink', 'hotpink', 'pink',
-                    'maroon', 'brown', 'tan', 'bisque'];
+const colorChoices = ['hsl(0,0%,0%)', 'hsl(180,25%,25%)', 'hsl(0,0%,50%)', 'hsl(0,0%,75%)', 
+                    'hsl(0,0%,86%)', 'hsl(30,67%,94%)', 'hsl(180,100%,97%)', 'hsl(0,0%,100%)', 
+                    'hsl(0,100%,27%)', 'hsl(0,100%,50%)', 'hsl(0,79%,72%', 'hsl(18,100%,73%)', 
+                    'hsl(16,100%,50%)', 'hsl(9,100%,64%)', 'hsl(39,100%,50%)', 'hsl(51,100%,50%)', 
+                    'hsl(56,38%,58%)', 'hsl(60,100%,50%)', 'hsl(54,77%,75%)', 'hsl(54,100%,90%)', 
+                    'hsl(120,100%,20%)', 'hsl(120,100%,25%)', 'hsl(120,100%,50%)', 'hsl(120,93%,79%)', 
+                    'hsl(180,100%,25%)', 'hsl(182,25%,50%)', 'hsl(180,100%,50%)', 'hsl(180,65%,81%)',
+                    'hsl(240,100%,27%)', 'hsl(240, 100%, 50%)', 'hsl(219,79%,66%)', 'hsl(203,92%,75%)', 
+                    'hsl(273,100%,27%)', 'hsl(296,100%,27%)', 'hsl(300,100%,50%)', 'hsl(300,47%,75%)', 
+                    'hsl(322,81%,43%)', 'hsl(328,100%,54%)', 'hsl(330,100%,71%)', 'hsl(350,100%,88%)',
+                    'hsl(0,100%,25%)', 'hsl(4,66%,39%)', 'hsl(34,44%,69%)', 'hsl(28,100%,90%)'];
 
-const rainbow = ['red', 'orangered', 'orange', '#FFCC00', 
-                'yellow', 'chartreuse', 'green', 'cyan', 
-                'blue', 'indigo', 'blueviolet', 
-                'violet', '#FF00FF']                        
+const rainbow = ['hsl(0,100%,50%)', 'hsl(16,100%,50%)', 'hsl(39,100%,50%)', 'hsl(48, 100%, 50%)', 
+                'hsl(60,100%,50%)', 'hsl(90, 100%, 50%)', 'hsl(120,100%,25%)', 'hsl(180,100%,50%)', 
+                'hsl(240, 100%, 50%)', 'hsl(275, 100%, 25%)', 'hsl(271, 76%, 53%)', 
+                'hsl(300, 76%, 72%)', 'hsl(300, 100%, 50%)'];
+
+function convertHSLA(bg) {
+    var hsla = {
+        'hsl(0,0%,0%)':'black', 'hsl(180,25%,25%)':'dark slate gray', 'hsl(0,0%,50%)':'gray', 
+        'hsl(0,0%,75%)':'silver', 'hsl(0,0%,86%)':'gainsboro', 'hsl(30,67%,94%)':'linen', 
+        'hsl(180,100%,97%)':'azure', 'hsl(0,0%,100%)':'white', 'hsl(0,100%,27%)':'dark red', 
+        'hsl(0,100%,50%)':'red', 'hsl(0,79%,72%':'light coral', 'hsl(18,100%,73%)':'light salmon', 
+        'hsl(16,100%,50%)':'orange red', 'hsl(9,100%,64%)':'tomato', 'hsl(39,100%,50%)':'orange', 
+        'hsl(51,100%,50%)':'gold', 'hsl(56,38%,58%)':'dark khaki', 'hsl(60,100%,50%)':'yellow', 
+        'hsl(54,77%,75%)':'khaki', 'hsl(54,100%,90%)':'lemon chiffon', 'hsl(120,100%,20%)':'dark green', 
+        'hsl(120,100%,25%)':'green', 'hsl(120,100%,50%)':'lime', 'hsl(120,93%,79%)':'palegreen', 
+        'hsl(180,100%,25%)':'teal', 'hsl(182,25%,50%)':'cadet blue', 'hsl(180,100%,50%)':'cyan', 
+        'hsl(180,65%,81%)':'pale turquoise', 'hsl(240,100%,27%)':'navy', 'hsl(240, 100%, 50%)':'blue', 
+        'hsl(219,79%,66%)':'cornflower blue', 'hsl(203,92%,75%)':'light sky blue', 'hsl(273,100%,27%)':'indigo', 
+        'hsl(296,100%,27%)':'purple', 'hsl(300,100%,50%)':'fuchsia', 'hsl(300,47%,75%)':'plum', 
+        'hsl(322,81%,43%)':'medium violet red', 'hsl(328,100%,54%)':'deep pink', 'hsl(330,100%,71%)':'hot pink', 
+        'hsl(350,100%,88%)':'pink', 'hsl(0,100%,25%)':'maroon', 'hsl(4,66%,39%)':'brown', 
+        'hsl(34,44%,69%)':'tan', 'hsl(28,100%,90%)':'bisque'
+        };
+
+        return hsla[bg]; 
+};
+
+            
 
 // Build canvas to sketch on
 
@@ -34,6 +58,7 @@ function makeGrid(gridSize) {
 
         var cell = document.createElement('div');
         cell.id = 'cell' + (x + 1);
+        cell.style.backgroundClip = 'white';
         canvas.appendChild(cell).className = 'cell';
     };
         
@@ -75,7 +100,7 @@ function changeColor(bg) {
         
     };
     
-    console.log('Using pretty ' + bg + ' paint');
+    console.log('Using pretty ' + convertHSLA(bg) + ' paint');
    
 };
 
@@ -103,6 +128,13 @@ function drawRainbow() {
 
 };
 
+function darken() {
+    var cell = document.getElementById('canvas').querySelectorAll('.cell');
+    bg = cell[1].style.backgroundColor
+    console.log(bg)
+    
+}
+darken();
 // Change canvas resolution
 
 var res = document.getElementById('res');
