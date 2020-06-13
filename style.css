@@ -8,6 +8,10 @@ body {
     --grid-rows: 1;
   }
 
+  h1#title {
+    margin-bottom: 0px;
+  }
+
   a:link {
     color: white;
     text-decoration: none;
@@ -47,14 +51,14 @@ body {
   }
 
   #section {
-    margin-top: 10px;
+    margin-top: 5px;
   }
   
   #canvas {
     height: 40vw;
     width: 40vw;
     float: left;
-    margin-left: 10px;
+    margin: 10px 0px 0px 10px;
     border: 2px solid black;
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
@@ -72,13 +76,13 @@ body {
   #menuLeft {
     float: left;
     width: 25%;
-    padding: 10px;
+    /*padding: 10px;*/
   }
 
   #menuRight {
     float: left;
     width: 25%;
-    padding: 10px;
+    /*padding: 10px;*/
   }
 
   #section:after {
@@ -146,6 +150,7 @@ body {
 
   #rainbowBtn {
     padding: 15px 25px;
+    width: 150px;
     font-size: 24px;
     text-align: center;
     cursor: pointer;
@@ -167,6 +172,7 @@ body {
 
   #shadeBtn {
     padding: 15px 25px;
+    width: 150px;
     font-size: 24px;
     text-align: center;
     cursor: pointer;

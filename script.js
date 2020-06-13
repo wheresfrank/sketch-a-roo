@@ -1,4 +1,4 @@
-console.log('Welcome to the best sketching website on this tab\n.......................................')
+console.log('Welcome to the best sketching website on this tab\n.................................................')
 
 let gridSize = 16;
 const canvas = document.getElementById('canvas');
@@ -23,8 +23,10 @@ const rainbow = ['hsl(0,100%,50%)', 'hsl(16,100%,50%)', 'hsl(39,100%,50%)', 'hsl
                 'hsl(240, 100%, 50%)', 'hsl(275, 100%, 25%)', 'hsl(271, 76%, 53%)', 
                 'hsl(300, 76%, 72%)', 'hsl(300, 100%, 50%)'];
 
-function convertHSLA(bg) {
-    var hsla = {
+// Convert HSL code to the color name for the console log
+
+function convertHSL(bg) {
+    var hsl = {
         'hsl(0,0%,0%)':'black', 'hsl(180,25%,25%)':'dark slate gray', 'hsl(0,0%,50%)':'gray', 
         'hsl(0,0%,75%)':'silver', 'hsl(0,0%,86%)':'gainsboro', 'hsl(30,67%,94%)':'linen', 
         'hsl(180,100%,97%)':'azure', 'hsl(0,0%,100%)':'white', 'hsl(0,100%,27%)':'dark red', 
@@ -42,10 +44,8 @@ function convertHSLA(bg) {
         'hsl(34,44%,69%)':'tan', 'hsl(28,100%,90%)':'bisque'
         };
 
-        return hsla[bg]; 
-};
-
-            
+        return hsl[bg]; 
+};            
 
 // Build canvas to sketch on
 
@@ -58,10 +58,9 @@ function makeGrid(gridSize) {
 
         var cell = document.createElement('div');
         cell.id = 'cell' + (x + 1);
-        cell.style.backgroundClip = 'white';
+        cell.style.backgroundColor='rgb(255, 255, 255)';
         canvas.appendChild(cell).className = 'cell';
-    };
-        
+    };        
 };    
 
 makeGrid(gridSize);
@@ -96,12 +95,9 @@ function changeColor(bg) {
     for (i = 0; i < cell.length; i++) {
         cell[i].onmouseenter = function(){
             this.style.backgroundColor = bg;
-        };
-        
-    };
-    
-    console.log('Using pretty ' + convertHSLA(bg) + ' paint');
-   
+        };        
+    };    
+    console.log('Using pretty ' + convertHSL(bg) + ' paint');
 };
 
 // Draw with all the colors of the rainbow
@@ -118,23 +114,52 @@ function drawRainbow() {
             if (ri == rainbow.length) {
                 ri = 0;
             };
-
             rc = rainbow[ri];
-            this.style.backgroundColor = rc;                    
+            this.style.backgroundColor = rc;            
         };
     };
-
     console.log('Drawing with the colors of the rainbow');
-
 };
 
-function darken() {
+// Lighten and darken cells
+
+function shadeCells(amt) {
     var cell = document.getElementById('canvas').querySelectorAll('.cell');
-    bg = cell[1].style.backgroundColor
-    console.log(bg)
-    
-}
-darken();
+
+    if (amt < 0) {
+        document.getElementById('activeColor').style.cssText = 'background-image: linear-gradient(to right, white,black);';
+    } else {
+        document.getElementById('activeColor').style.cssText = 'background-image: linear-gradient(to right, black,white);';
+    };
+
+    for (i = 0; i < cell.length; i++) {
+
+        cell[i].onmouseenter = function(){
+
+            bg = this.style.backgroundColor;
+            rgb = bg.slice(4, -1);
+            rgb = rgb.split(", ").map(Number);
+            r = (rgb[0] + amt);
+            b = (rgb[1] + amt);
+            g = (rgb[2] + amt);
+            if (r < 1) {r = 1};
+            if (r > 254) {r = 255};
+            if (g < 1) {g = 1};
+            if (g > 254) {g = 255};
+            if (b < 1) {b = 1};
+            if (b > 254) {b = 255};
+
+            newBg = ("rgb(" + r + ", " + b + ", " + g + ")");
+            this.style.backgroundColor = newBg;                 
+        };
+    };    
+    if (amt < 0) {
+        console.log('Making cells darker')
+    } else {
+        console.log('Making cells lighter')
+    };
+};
+
 // Change canvas resolution
 
 var res = document.getElementById('res');

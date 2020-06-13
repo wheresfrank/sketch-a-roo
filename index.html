@@ -20,26 +20,32 @@
                     <button type="button" id="resBtn" onclick="pickResolution()">Submit</button></p>
                     <hr>
             </div>
+
             <div id="menuLeft">
                 <div id="paletteContainer">
                     <p>Color Selector</p>
                     <div id="palette"></div>
                     <div id="activeColor">Active<br>Color</div>
-                </div>
- 
+                </div> 
             </div>
+
             <div id="menuRight">
                 <div id="buttonsContainer">
                     <p>Drawing Modes</p>
                     <div id="buttons">
                     <button type="button" id="rainbowBtn" onclick="drawRainbow()">Rainbow</button><br>
+                    <button type="button" id="shadeBtn" onclick="shadeCells(-20)">Darken</button><br>
+                    <button type="button" id="shadeBtn" onclick="shadeCells(20)">Lighten</button><br>              
                     </div>
                 </div>
+
             </div>
         </div>
-    <footer>
-        Created by Frank Johnette for <a href="https://www.theodinproject.com" target="_blank">The Odin Project</a>
-    </footer>
+        <footer>
+            Created by Frank Johnette for <a href="https://www.theodinproject.com" target="_blank">The Odin Project</a>
+        </footer>
+
         <script src="script.js"></script>
+
     </body>    
-</html>
+    </html>
